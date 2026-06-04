@@ -16,8 +16,8 @@ export default function Header(props: HeaderProps): React.ReactElement {
         <div className="panel">
 
           {theme === "light"
-            ? <img className="panel__icon" src="/assets/images/icon-sun-dark.svg" alt="light theme" />
-            : <img className="panel__icon" src="/assets/images/icon-sun-light.svg" alt="dark theme" />}
+            ? <img className="panel__icon" src="./assets/images/icon-sun-dark.svg" alt="light theme" />
+            : <img className="panel__icon" src="./assets/images/icon-sun-light.svg" alt="dark theme" />}
 
           <label className="toggle-theme" htmlFor="toggle-theme">
             <input
@@ -30,8 +30,8 @@ export default function Header(props: HeaderProps): React.ReactElement {
           </label>
 
           {theme === "light"
-            ? <img className="panel__icon" src="/assets/images/icon-moon-dark.svg" alt="light theme" />
-            : <img className="panel__icon" src="/assets/images/icon-moon-light.svg" alt="dark theme" />}
+            ? <img className="panel__icon" src="./assets/images/icon-moon-dark.svg" alt="light theme" />
+            : <img className="panel__icon" src="./assets/images/icon-moon-light.svg" alt="dark theme" />}
         </div>
       </nav>
     </header>

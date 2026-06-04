@@ -11,7 +11,7 @@ type Quizzes = {
 }
 
 const getQuizzes = async (): Promise<Array<Quizzes>> => {
-  const response = await fetch("/data.json");
+  const response = await fetch("/project01-frontend-quiz-app/data.json");
   if (!response.ok) throw new Error(response.statusText);
   const json = await response.json();
   const quizzes = json.quizzes;
