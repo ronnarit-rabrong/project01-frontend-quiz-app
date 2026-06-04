@@ -4,9 +4,9 @@ import babel from '@rolldown/plugin-babel'
 
 // https://vite.dev/config/
 export default defineConfig({
-  base: "/project01-frontend-quiz-app/",
   plugins: [
     react(),
     babel({ presets: [reactCompilerPreset()] }),
   ],
+  base: "/",
 })
