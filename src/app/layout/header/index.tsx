@@ -4,9 +4,6 @@ import type { HeaderProps } from "./type"
 export default function Header(props: HeaderProps): React.ReactElement {
   const { theme, setTheme, render, title, icon } = props.headerData;
 
-  console.log(title.toLocaleLowerCase());
-  console.log(icon);
-
   return (<>
     <header className={`header header--${theme}`}>
       <nav className="navigate">
