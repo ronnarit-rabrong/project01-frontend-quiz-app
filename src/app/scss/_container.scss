@@ -1,0 +1,13 @@
+@use "./breakpoint" as breakpoint;
+
+@mixin wrap{
+  --space-lr: 1.5rem;
+  width: min(100% - calc(var(--space-lr) * 2), 72.5rem);
+  margin: 0 auto;
+  @media (min-width: breakpoint.$tablet){
+    --space-lr: 4rem;
+  }
+  @media (min-width: breakpoint.$desktop){
+    --space-lr: clamp(5rem, -1.25rem + 11.1111vw, 8.75rem);
+  }
+}

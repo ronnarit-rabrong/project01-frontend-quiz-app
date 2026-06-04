@@ -1,0 +1,38 @@
+@use "./scss/reset";
+@use "./scss/typography";
+@use "./scss/color" as color;
+@use "./scss/breakpoint" as breakpoint;
+
+.app{
+  min-height: 100svh;
+
+  &--light{
+    background-image: url("/public/assets/images/pattern-background-mobile-light.svg");
+    background-repeat: no-repeat;
+    background-color: color.$grey-50;
+
+    @media (min-width: breakpoint.$tablet){
+      background-image: url("/public/assets/images/pattern-background-tablet-light.svg");
+    }
+
+    @media (min-width: breakpoint.$desktop){
+      background-position: center;
+      background-image: url("/public/assets/images/pattern-background-desktop-light.svg");
+    }
+  }
+
+  &--dark{
+    background-image: url("/public/assets/images/pattern-background-mobile-dark.svg");
+    background-repeat: no-repeat;
+    background-color: color.$blue-900;
+
+    @media (min-width: breakpoint.$tablet){
+      background-image: url("/public/assets/images/pattern-background-tablet-dark.svg");
+    }
+
+    @media (min-width: breakpoint.$desktop){
+      background-position: center;
+      background-image: url("/public/assets/images/pattern-background-desktop-dark.svg");
+    }
+  }
+}

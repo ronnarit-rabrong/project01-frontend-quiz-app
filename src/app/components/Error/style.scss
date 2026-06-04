@@ -1,0 +1,27 @@
+@use "../../scss/color" as color;
+@use "../../scss/typography" as typography;
+@use "../../scss/breakpoint" as breakpoint;
+
+.error{
+  .wrapper{
+    display: grid;
+    align-content: center;
+    justify-items: center;
+    min-height: 100svh;
+
+    .title{
+      @include typography.text-preset-2;
+      font-weight: 500;
+
+      @media (min-width: breakpoint.$desktop){
+        @include typography.text-preset-1;
+        font-weight: 500;
+      }
+    }
+
+    .message{
+      @include typography.text-preset-3;
+      font-weight: 400;
+    }
+  }
+}

@@ -1,0 +1,253 @@
+@use "../../scss/color" as color;
+@use "../../scss/typography" as typography;
+@use "../../scss/container" as container;
+@use "../../scss/breakpoint" as breakpoint;
+
+.quizzes{
+  &--light{
+    --clr-focus: #{color.$purple-500};
+    --clr-question__name: #{color.$blue-900};
+    --clr-question__current: #{color.$grey-500};
+    --bg-bar: #{color.$white};
+    --bg-bar__line: #{color.$purple-500};
+    --clr-option__button__name: #{color.$grey-500};
+    --bg-option__button__name: #{color.$grey-50};
+    --clr-option__button: #{color.$blue-900};
+    --bg-option__button: #{color.$white};
+    --clr-option__select-error: #{color.$red};
+  }
+
+  &--dark{
+    --clr-focus: #{color.$purple-500};
+    --clr-question__name: #{color.$white};
+    --clr-question__current: #{color.$blue-300};
+    --bg-bar: #{color.$blue-850};
+    --bg-bar__line: #{color.$purple-500};
+    --clr-option__button: #{color.$white};
+    --clr-option__button__name: #{color.$grey-500};
+    --bg-option__button__name: #{color.$grey-50};
+    --bg-option__button: #{color.$blue-850};
+    --clr-option__select-error: #{color.$white};
+  }
+
+  .wrapper {
+    @include container.wrap;
+    display: grid;
+    gap: 2.5rem 0;
+    padding: 2rem 0;
+
+    @media(min-width: breakpoint.$tablet){
+      padding: unset;
+      gap: 4rem 0;
+    }
+
+    @media(min-width: breakpoint.$desktop){
+      grid-template-columns: 1fr 1fr;
+      gap: 0 clamp(1rem, -10.6667rem + 20.7407vw, 8rem);
+      padding: 0 0 4rem 0;
+    }
+
+    .question{
+      .bar{
+        margin: 1.5rem 0 0 0;
+        background-color: var(--bg-bar);
+        display: block;
+        width: 100%;
+        height: 1rem;
+        border-radius: calc(1rem * 8 / 16);
+      }
+
+      .bar__line{
+        background-color: var(--bg-bar__line);
+        position: relative;
+        top: calc(1rem * 2.75 / 16);
+        left: calc(1rem * 2.5 / 16);
+        display: block;
+        height: 70%;
+        border-radius: calc(1rem * 8 / 16);
+      }
+    }
+
+    .question__current{
+      @include typography.text-preset-5--italic;
+      color: var(--clr-question__current);
+    }
+
+    .question__name{
+      @include typography.text-preset-3;
+      color: var(--clr-question__name);
+      margin: 1rem 0 0 0;
+    }
+
+    .option{
+      margin: 0;
+      padding: 0;
+      display: grid;
+      gap: 1rem;
+    }
+
+    .option__button{
+      background-color: var(--bg-option__button);
+      display: grid;
+      align-items: center;
+      grid-template-columns: max-content 1fr;
+      position: relative;
+      gap: 0 1rem;
+      min-height: 4.5rem;
+      width: 100%;
+      text-align: left;
+      padding: 1rem;
+      border: none;
+      border-radius: calc(1rem * 16 / 16);
+
+      &:nth-of-type(1)::before{
+        content: "A";
+      }
+
+      &:nth-of-type(2)::before{
+        content: "B";
+      }
+
+      &:nth-of-type(3)::before{
+        content: "C";
+      }
+
+      &:nth-of-type(4)::before{
+        content: "D";
+      }
+
+      &::before{
+        grid-area: 1 / 1 / 2 / 2;
+        @include typography.text-preset-4;
+        color: var(--clr-option__button__name);
+        padding: calc(1rem * 10 / 16) 1rem;
+        z-index: 2;
+      }
+
+      &::after{
+        background-color: var(--bg-option__button__name);
+        content: "";
+        grid-area: 1 / 1 / 2 / 2;
+        position: relative;
+        z-index: 1;
+        padding: 1.35rem 1rem;
+        border-radius: calc(1rem * 8 / 16);
+      }
+
+      span{
+        grid-area: 1 / 2 / 2 / 3;
+        @include typography.text-preset-5--medium;
+        color: var(--clr-option__button);
+        &::after{
+          content: "";
+          position: absolute;
+          right: 1rem;
+          top: 50%;
+          transform: translateY(-50%);
+        }
+      }
+
+      &:hover{
+        cursor: pointer;
+      }
+
+      &:focus-visible{
+        outline: calc(1rem * 2 / 16) solid var(--clr-focus);
+        outline-offset: calc(1rem * 2 / 16);
+      }
+
+      &--onClick{
+        border: calc(1rem * 3 / 16) solid color.$purple-500;
+        padding: calc(1rem - calc(1rem * 3 / 16));
+        &::after{
+          --bg-option__button__name: #{color.$purple-500};
+        }
+        &::before{
+          --clr-option__button__name: #{color.$white};
+        }
+      }
+
+      &--correct{
+        border: calc(1rem * 3 / 16) solid color.$green-500;
+        padding: calc(1rem - calc(1rem * 3 / 16));
+        &::after{
+          --bg-option__button__name: #{color.$green-500};
+        }
+        &::before{
+          --clr-option__button__name: #{color.$white};
+        }
+        span{
+          &::after{
+            content: url("/public/assets/images/icon-correct.svg");
+            background-color: var(--bg-option__button);
+            padding: calc(1rem * 5 / 16);
+
+          }
+        }
+      }
+
+      &--not-correct{
+        border: calc(1rem * 3 / 16) solid color.$red;
+        padding: calc(1rem - calc(1rem * 3 / 16));
+        &::after{
+          --bg-option__button__name: #{color.$red};
+        }
+        &::before{
+          --clr-option__button__name: #{color.$white};
+        }
+        span{
+          &::after{
+            content: url("/public/assets/images/icon-incorrect.svg");
+            background-color: var(--bg-option__button);
+            padding: calc(1rem * 8 / 16);
+          }
+        }
+      }
+
+      &--find-correct{
+        span{
+          &::after{
+            content: url("/public/assets/images/icon-correct.svg");
+            background-color: var(--bg-option__button);
+            padding: calc(1rem * 8 / 16);
+          }
+        }
+      }
+    }
+
+    .option__submit-buttont{
+      @include typography.text-preset-4;
+      background-color: color.$purple-500;
+      color: color.$white;
+      min-height: 4.5rem;
+      width: 100%;
+      padding: 1rem;
+      border: none;
+      border-radius: calc(1rem * 12 / 16);
+
+      &:hover{
+        cursor: pointer;
+        background-color: color.$purple-300;
+      }
+
+      &:focus-visible{
+        outline: calc(1rem * 2 / 16) solid var(--clr-focus);
+        outline-offset: calc(1rem * 2 / 16);
+      }
+    }
+
+    .option__select-error{
+      @include typography.text-preset-5--regular;
+      color: var(--clr-option__select-error);
+      text-align: center;
+
+      &::before{
+        content: url("/public/assets/images/icon-incorrect.svg");
+        position: relative;
+        top: 25%;
+        transform: translateY(-25%);
+        padding: 0 1rem 0 0;
+      }
+    }
+  }
+}

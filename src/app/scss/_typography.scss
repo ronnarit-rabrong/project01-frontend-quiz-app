@@ -1,0 +1,87 @@
+@use "./breakpoint" as breakpoint;
+
+@font-face{
+  src: url("/assets/fonts/Rubik-VariableFont_wght.ttf") format('truetype');
+  font-family: "Rubilk-normal";
+  font-style: normal;
+  font-weight: 100 900;
+  letter-spacing: 0;
+}
+
+@font-face{
+  src: url("/assets/fonts/Rubik-Italic-VariableFont_wght.ttf") format('truetype');
+  font-family: "Rubilk-Italic";
+  font-weight: 100 900;
+  font-style: italic;
+  letter-spacing: 0;
+}
+
+body{
+  font-family: "Rubilk-normal", system-ui, sans-serif;
+}
+
+@mixin text-preset-1{
+  font-size: 5.5rem;
+  font-weight: 500;
+  line-height: 1;
+
+  @media (min-width: breakpoint.$tablet){
+    font-size: 9rem;
+  }
+}
+
+@mixin text-preset-2{
+  font-size: 2.5rem;
+  font-weight: 300;
+  line-height: 1;
+
+  @media (min-width: breakpoint.$tablet){
+    font-size: 4rem;
+  }
+}
+
+@mixin text-preset-3{
+  font-size: 1.25rem;
+  font-weight: 500;
+  line-height: 1.2;
+
+  @media (min-width: breakpoint.$tablet){
+    font-size: 2.25rem;
+  }
+}
+
+@mixin text-preset-4{
+  font-size: 1.125rem;
+  font-weight: 500;
+  line-height: 1;
+
+  @media (min-width: breakpoint.$tablet){
+    font-size: 1.75rem;
+  }
+}
+
+@mixin text-preset-5--regular{
+  font-size: 1.5rem;
+  font-weight: 400;
+  line-height: 1.5;
+}
+
+@mixin text-preset-5--medium{
+  font-size: 1.5rem;
+  font-weight: 500;
+  line-height: 1.5;
+}
+
+@mixin text-preset-5--italic{
+  font-family: "Rubilk-Italic" , system-ui, sans-serif;
+  font-size: calc(1rem * 14 / 16);
+  font-weight: 400;
+  line-height: 1.5;
+}
+
+@mixin text-preset-6--italic{
+  font-family: "Rubilk-Italic" , system-ui, sans-serif;
+  font-size: 1.25rem;
+  font-weight: 400;
+  line-height: 1.5;
+}

@@ -1,0 +1,151 @@
+@use "../../scss/color" as color;
+@use "../../scss/typography" as typography;
+@use "../../scss/container" as container;
+@use "../../scss/breakpoint" as breakpoint;
+
+/* header */
+.header {
+  padding: 1rem 0;
+  @media (min-width: breakpoint.$tablet){
+    padding: 2.5rem 0;
+  }
+  @media (min-width: breakpoint.$desktop){
+    padding: 5rem 0;
+  }
+  &--light{
+    --clr-subject__name: #{color.$blue-900};
+  }
+  &--dark{
+    --clr-subject__name: #{color.$white};
+  }
+
+/* navigate */
+  .navigate{
+    @include container.wrap;
+    display: grid;
+    align-items: center;
+    grid-template-columns: 1fr max-content;
+    min-height: 2.5rem;
+    @media (min-width: breakpoint.$tablet){
+      min-height: 3.5rem;
+    }
+
+/*   subject */
+    .subject{
+      grid-area: 1 / 1 / 2 / 2;
+      display: grid;
+      grid-template-columns: 2.5rem 1fr;
+      align-items: center;
+      gap: 1rem;
+      @media (min-width: breakpoint.$tablet){
+        grid-template-columns: 3.5rem 1fr;
+      }
+      &::after{
+        grid-area: 1 / 1 / 2 / 2;
+        content: "";
+        padding: 1rem;
+        z-index: 1;
+        border-radius: calc(1rem * 4 / 16);
+        background-color: var(--bg-subject__icon);
+        @media (min-width: breakpoint.$tablet){
+          padding: 1.25rem;
+        }
+      }
+      &--html{
+        --bg-subject__icon: #{color.$orange-50};
+      }
+      &--css{
+        --bg-subject__icon: #{color.$green-50};
+      }
+      &--javascript{
+        --bg-subject__icon: #{color.$blue-50};
+      }
+      &--accessibility{
+        --bg-subject__icon: #{color.$purple-50};
+      }
+    }
+
+    .subject__icon{
+      grid-area: 1 / 1 / 2 /2;
+      width: 2.5rem;
+      height: 2.5rem;
+      z-index: 2;
+      padding: calc(1rem * 6 / 16);
+      @media (min-width: breakpoint.$tablet){
+        width: 3.5rem;
+      }
+    }
+
+    .subject__name{
+      @include typography.text-preset-4;
+      color: var(--clr-subject__name);
+      grid-area: 1 / 2 / 2 / 3;
+    }
+
+/*   panel */
+    .panel{
+      grid-area: 1 / 2 / 2 / 3;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+
+/*     toggle-theme */
+      .toggle-theme{
+        position: relative;
+        display: inline-block;
+        width: calc(1rem * 48 / 16);
+        height: calc(1rem * 28 / 16);
+      }
+
+      .toggle-theme__checkbox{
+        opacity: 0;
+        width: 0;
+        height: 0;
+
+        &:checked + .toggle-theme__slider{
+          background-color: color.$purple-500;
+
+          &::before{
+            -webkit-transform: translateX(1.125rem);
+            -ms-transform: translateX(1.125rem);
+            transform: translateX(1.125rem);
+          }
+        }
+
+        &:focus +  .toggle-theme__slider{
+          box-shadow: 0 0 calc(1rem * 1 / 16) color.$purple-500;
+        }
+      }
+
+      .toggle-theme__slider{
+        position: absolute;
+        cursor: pointer;
+        inset: 0;
+        background-color: color.$purple-500;
+        -webkit-transition: 0.4s;
+        transition: 0.4s;
+        border-radius: 2rem;
+
+        &:before{
+          position: absolute;
+          content: "";
+          height: 1.25rem;
+          width: 1.25rem;
+          left: calc(1rem * 4 / 16);
+          bottom: calc(1rem * 4 / 16);
+          background-color: color.$white;
+          -webkit-transition: 0.4s;
+          transition: 0.4s;
+          border-radius: 50%;
+        }
+      }
+    }
+
+    .panel__icon{
+      width: 1rem;
+      @media (min-width: breakpoint.$tablet){
+        width: 1.5rem;
+      }
+    }
+  }
+}

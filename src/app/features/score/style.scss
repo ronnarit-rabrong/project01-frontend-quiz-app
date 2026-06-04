@@ -1,0 +1,170 @@
+@use "../../scss/color" as color;
+@use "../../scss/typography" as typography;
+@use "../../scss/container" as container;
+@use "../../scss/breakpoint" as breakpoint;
+
+.score {
+  &--light{
+    --clr-focus: #{color.$purple-500};
+    --clr-info: #{color.$blue-900};
+    --clr-subject__name: #{color.$blue-900};
+    --clr-score__score: #{color.$blue-900};
+    --clr-score__count: #{color.$blue-900};
+    --bg-score: #{color.$white};
+  }
+
+  &--dark{
+    --clr-focus: #{color.$purple-500};
+    --clr-info: #{color.$white};
+    --clr-subject__name: #{color.$white};
+    --clr-score__score: #{color.$white};
+    --clr-score__count: #{color.$blue-300};
+    --bg-score: #{color.$blue-850};
+  }
+
+  .wrapper{
+    @include container.wrap;
+    display: grid;
+    gap: 2.5rem 0;
+    padding: 2rem 0;
+
+    @media(min-width: breakpoint.$tablet){
+      padding: unset;
+      gap: 4rem 0;
+    }
+
+    @media(min-width: breakpoint.$desktop){
+      grid-template-columns: 1fr 1fr;
+      gap: 0 clamp(1rem, -10.6667rem + 20.7407vw, 8rem);
+      padding: 0 0 4rem 0;
+    }
+
+    .info{
+      @include typography.text-preset-2;
+      color: var(--clr-info);
+      width: min(100%, calc(1rem * 290 / 16));
+
+      @media(min-width: breakpoint.$tablet){
+        width: min(100%, calc(1rem * 450 / 16));
+      }
+
+
+      @media(min-width: breakpoint.$desktop){
+        margin: 3rem 0 0 0;
+      }
+
+      strong{
+        font-weight: 500;
+      }
+    }
+
+    .display{
+      display: grid;
+      gap: 1rem;
+
+      @media(min-width: breakpoint.$tablet){
+        gap: 2rem;
+      }
+
+      .score{
+        background-color: var(--bg-score);
+        display: grid;
+        justify-items: center;
+        gap: 1rem;
+        padding: 2rem;
+        border-radius: calc(1rem * 8 / 16);
+
+        @media(min-width: breakpoint.$tablet){
+          padding: 3rem;
+          gap: 2.5rem;
+        }
+
+        .subject{
+          display: grid;
+          grid-template-columns: 2.5rem 1fr;
+          align-items: center;
+          gap: 1rem;
+
+          &::before{
+            display: block;
+            grid-area: 1 / 1 / 2 / 2;
+            content: "";
+            z-index: 1;
+            position: relative;
+            padding: 1.25rem 1rem;
+            border-radius: calc(1rem * 8 / 16);
+          }
+
+          &--html{
+            &::before{
+              background-color: color.$orange-50;
+            }
+          }
+          &--css{
+            &::before{
+              background-color: color.$green-50;
+            }
+          }
+          &--javascript{
+            &::before{
+              background-color: color.$blue-50;
+            }
+          }
+          &--accessibility{
+            &::before{
+              background-color: color.$purple-50;
+            }
+          }
+        }
+
+        .subject__icon{
+          grid-area: 1 / 1 / 2 / 2;
+          width: 2.5rem;
+          height: 2.5rem;
+          padding: calc(1rem * 4 / 16);
+          z-index: 2;
+        }
+
+        .subject__name{
+          @include typography.text-preset-4;
+          color: var(--clr-subject__name);
+        }
+      }
+
+      .score__result{
+        @include typography.text-preset-1;
+        color: var(--clr-score__score);
+      }
+
+      .score__count{
+        @include typography.text-preset-4;
+        color: var(--clr-score__count);
+      }
+    }
+
+    .reset-button{
+      @include typography.text-preset-4;
+      background-color: color.$purple-500;
+      color: color.$white;
+      display: inline-block;
+      min-height: 3.5rem;
+      padding: 1rem 2rem;
+      border: none;
+      border-radius: calc(1rem * 12 / 16);
+
+      &:hover{
+        cursor: pointer;
+        background-color: color.$purple-300;
+      }
+
+      &:focus-visible{
+        outline: calc(1rem * 2 / 16) solid var(--clr-focus);
+        outline-offset: calc(1rem * 2 / 16);
+      }
+
+      @media(min-width: breakpoint.$tablet){
+        padding: 2rem;
+      }
+    }
+  }
+}
