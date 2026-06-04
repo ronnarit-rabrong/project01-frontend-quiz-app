@@ -10,9 +10,8 @@ type Quizzes = {
     }[]
 }
 
-const baseUrl = "/data.json";
 const getQuizzes = async (): Promise<Array<Quizzes>> => {
-  const response = await fetch(`${baseUrl}`);
+  const response = await fetch("/data.json");
   if (!response.ok) throw new Error(response.statusText);
   const json = await response.json();
   const quizzes = json.quizzes;
