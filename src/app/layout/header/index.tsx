@@ -4,11 +4,14 @@ import type { HeaderProps } from "./type"
 export default function Header(props: HeaderProps): React.ReactElement {
   const { theme, setTheme, render, title, icon } = props.headerData;
 
+  console.log(title.toLocaleLowerCase());
+  console.log(icon);
+
   return (<>
     <header className={`header header--${theme}`}>
       <nav className="navigate">
-        {render === "quizzes" || render === "score" && (
-          <div className={`subject subject--${title.toLowerCase()}`}>
+        {(render === "quizzes" || render === "score" )&& (
+          <div className={`subject subject--${title.toLocaleLowerCase()}`}>
             <img className="subject__icon" src={icon} alt="icon subjuct" />
             <h3 className="subject__name">{title}</h3>
           </div>
